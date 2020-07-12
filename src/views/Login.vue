@@ -10,7 +10,7 @@
       <v-row>
         <v-col cols="12" sm="6" class="d-flex justify-center align-center flex-column">
           <div>
-            <v-img width="50%" max-width="200px" class="mx-auto my-4" src="/logo-blanco.png"></v-img>
+            <v-img width="50%" max-width="200px" class="mx-auto my-4" src="/img/logo-blanco.png"></v-img>
           </div>
           <div class="white--text text-center my-5 h1">
             <span class="text-h3 font-weight-light">Ide</span>
