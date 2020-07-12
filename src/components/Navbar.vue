@@ -11,7 +11,7 @@
         class="text-uppercase dark-grey--text d-flex align-center"
       >
         <v-avatar size="30" class="ma-2">
-          <v-img src="/logo-negro.png"></v-img>
+          <v-img src="/img/logo-negro.png"></v-img>
         </v-avatar>
         <span class="font-weight-light">Ide</span>
         <span>App</span>

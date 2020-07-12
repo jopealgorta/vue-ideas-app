@@ -42,7 +42,7 @@ export default {
     show: false,
     message: "",
     messages: [],
-    socket: io("http://localhost:3000"),
+    socket: io("https://www.greatideasapp.herokuapp.com"),
     prevRoute: null
   }),
   methods: {
