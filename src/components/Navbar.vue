@@ -115,6 +115,7 @@ export default {
     },
     async logout() {
       if (confirm("Esta seguro de cerrar sesion?")) {
+        localStorage.clear();
         await axios("api/users/logout");
         this.$router.push("/login");
       }

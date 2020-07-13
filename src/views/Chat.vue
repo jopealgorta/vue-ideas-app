@@ -13,17 +13,19 @@
         <message :messages="messages"></message>
       </v-col>
       <v-col cols="12" class="typer py-0 px-2">
-        <v-text-field
-          v-model="message"
-          :append-outer-icon="message ? 'mdi-send' : 'mdi-microphone'"
-          prepend-icon="mdi-emoticon"
-          clear-icon="mdi-close-circle"
-          clearable
-          label="Message"
-          type="text"
-          @click:append-outer="sendMessage"
-          @click:clear="clearMessage"
-        ></v-text-field>
+        <v-form @submit.prevent="sendMessage">
+          <v-text-field
+            v-model="message"
+            :append-outer-icon="message ? 'mdi-send' : 'mdi-microphone'"
+            prepend-icon="mdi-emoticon"
+            clear-icon="mdi-close-circle"
+            clearable
+            label="Message"
+            type="text"
+            @click:append-outer="sendMessage"
+            @click:clear="clearMessage"
+          ></v-text-field>
+        </v-form>
       </v-col>
     </v-row>
   </v-container>
@@ -43,7 +45,8 @@ export default {
     message: "",
     messages: [],
     socket: io(),
-    prevRoute: null
+    prevRoute: null,
+    chatCont: document.querySelector(".chat-container")
   }),
   methods: {
     joinServer() {
@@ -64,11 +67,12 @@ export default {
     listen() {
       this.socket.on("message", msg => {
         this.messages.push(msg);
-        // chatMessages.scrollTop = chatMessages.scrollHeight;
+        this.chatCont.scrollTop = this.chatCont.scrollHeight;
       });
     },
     sendMessage() {
       this.socket.emit("chatMessage", this.message);
+      this.chatCont.scrollTop = this.chatCont.scrollHeight;
       this.clearMessage();
     },
     clearMessage() {
@@ -79,7 +83,8 @@ export default {
     }
   },
   async mounted() {
-    this.idea = ( // await axios(`api/ideas/${this.$root.idea}`)
+    this.idea = // await axios(`api/ideas/${this.$root.idea}`)
+    (
       await axios(`api/ideas/${localStorage.getItem("idea")}`)
     ).data.data.idea.title;
     await axios.patch(
