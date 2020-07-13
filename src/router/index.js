@@ -11,6 +11,7 @@ import Idea from '../views/Idea.vue';
 import MyIdeas from '../views/MyIdeas.vue';
 import LikedIdeas from '../views/LikedIdeas.vue';
 import Configuration from '../views/Configuration.vue';
+import ErrorView from '../views/Error.vue';
 // import axios from 'axios';
 
 Vue.use(VueRouter);
@@ -79,6 +80,11 @@ const routes = [
 		name: 'Configuration',
 		component: Configuration,
 		meta: { requiresAuth: true }
+	},
+	{
+		path: '/error',
+		name: 'Error',
+		component: ErrorView
 	}
 ];
 
@@ -88,13 +94,8 @@ const router = new VueRouter({
 	routes
 });
 
-// router.beforeEach((to, from, next) => {
-// 	if (to.matched.some(record => record.meta.requiresAuth)) {
-// 		if (localStorage.getItem('jwt') == null) {
-// 			return next('/login');
-// 		}
-// 	}
-// 	next();
-// });
+router.beforeEach((to, from, next) => {
+	next();
+});
 
 export default router;

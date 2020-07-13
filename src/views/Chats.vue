@@ -22,13 +22,15 @@ export default {
   }),
   methods: {
     goToChat(id) {
-      this.$root.idea = id;
+      // this.$root.idea = id;
+      localStorage.setItem("idea", id);
       this.$router.push(`/chat`);
     }
   },
   async mounted() {
+    // const res = await axios(`api/users/${this.$root.user.id}?fields=chats`);
     const res = await axios(
-      `api/users/${this.$root.user.id}?fields=chats`
+      `api/users/${localStorage.getItem("id")}?fields=chats`
     );
     this.chats = res.data.data.user[0].chats;
   }

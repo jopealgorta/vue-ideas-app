@@ -25,14 +25,20 @@ export default {
   }),
   async created() {
     try {
-      const response = await axios(`api/ideas/${this.$root.user.id}/user`);
+      // const response = await axios(`api/ideas/${this.$root.user.id}/user`);
+      const response = await axios(
+        `api/ideas/${localStorage.getItem("id")}/user`
+      );
       this.ideas = response.data.data.ideas;
     } catch (err) {
       this.snackbar = true;
       this.text = err.response.data.message;
     }
     try {
-      const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      // const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      const response = await axios(
+        `api/users/${localStorage.getItem("id")}/liked`
+      );
       this.likedIdeas = response.data.data.likedIdeas;
     } catch (err) {
       this.snackbar = true;

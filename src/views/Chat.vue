@@ -42,15 +42,18 @@ export default {
     show: false,
     message: "",
     messages: [],
-    socket: io("https://www.greatideasapp.herokuapp.com"),
+    socket: io(),
     prevRoute: null
   }),
   methods: {
     joinServer() {
       const data = {
-        userId: this.$root.user.id,
-        username: this.$root.user.name,
-        room: this.$root.idea
+        // userId: this.$root.user.id,
+        userId: localStorage.getItem("id"),
+        // username: this.$root.user.name,
+        username: localStorage.getItem("username"),
+        // room: this.$root.idea,
+        room: localStorage.getItem("idea")
       };
       this.socket.emit("joinRoom", data);
       this.socket.on("loadMessages", messages => {
@@ -76,11 +79,14 @@ export default {
     }
   },
   async mounted() {
-    this.idea = (
-      await axios(`api/ideas/${this.$root.idea}`)
+    this.idea = ( // await axios(`api/ideas/${this.$root.idea}`)
+      await axios(`api/ideas/${localStorage.getItem("idea")}`)
     ).data.data.idea.title;
     await axios.patch(
-      `api/users/${this.$root.user.id}/${this.$root.idea}/chat`
+      // `api/users/${this.$root.user.id}/${this.$root.idea}/chat`
+      `api/users/${localStorage.getItem("id")}/${localStorage.getItem(
+        "idea"
+      )}/chat`
     );
 
     this.joinServer();

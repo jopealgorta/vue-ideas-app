@@ -82,11 +82,13 @@ export default {
       return moment(newDate).fromNow();
     },
     goToChat(id) {
-      this.$root.idea = id;
+      // this.$root.idea = id;
+      localStorage.setItem("idea", id);
       this.$router.push(`/chat`);
     },
     goToIdea(id) {
-      this.$root.idea = id;
+      // this.$root.idea = id;
+      localStorage.setItem("idea", id);
       this.$router.push(`/idea`);
     },
     liked(id) {

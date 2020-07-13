@@ -149,9 +149,12 @@ export default {
     loading2: false
   }),
   mounted() {
-    this.name = this.$root.user.name;
-    this.email = this.$root.user.email;
-    this.userPhoto = this.$root.user.photo;
+    // this.name = this.$root.user.name;
+    this.name = localStorage.getItem("username");
+    // this.email = this.$root.user.email;
+    this.email = localStorage.getItem("email");
+    // this.userPhoto = this.$root.user.photo;
+    this.userPhoto = localStorage.getItem("photo");
   },
   methods: {
     async updateData() {
@@ -166,9 +169,12 @@ export default {
           this.loading = false;
           this.snackbar = true;
           this.text = "Datos actualizados satisfactoriamente!";
-          this.$root.user.name = this.name;
-          this.$root.user.email = this.email;
-          this.$root.user.photo = res.data.data.photo;
+          // this.$root.user.name = this.name;
+          localStorage.setItem("username", this.name);
+          // this.$root.user.email = this.email;
+          localStorage.setItem("email", this.email);
+          // this.$root.user.photo = res.data.data.photo;
+          localStorage.setItem("photo", res.data.data.photo);
           this.userPhoto = res.data.data.photo;
         }
       } catch (err) {

@@ -86,21 +86,28 @@ export default {
   //   next(vm => vm.setIdea(idea));
   // },
   async created() {
-    const idea = (await axios(`api/ideas/${this.$root.idea}`)).data.data.idea;
+    // const idea = (await axios(`api/ideas/${this.$root.idea}`)).data.data.idea;
+    const idea = (await axios(`api/ideas/${localStorage.getItem("idea")}`)).data
+      .data.idea;
     this.setIdea(idea);
-    const response = await axios(`api/users/${this.$root.user.id}/liked`);
+    // const response = await axios(`api/users/${this.$root.user.id}/liked`);
+    const response = await axios(
+      `api/users/${localStorage.getItem("id")}/liked`
+    );
     const likedIdeas = response.data.data.likedIdeas;
     this.likedIdeas = likedIdeas;
     this.liked(idea.id);
   },
   methods: {
     goToChat(id) {
-      this.$root.idea = id;
+      // this.$root.idea = id;
+      localStorage.setItem("idea", id);
       this.$router.push(`/chat`);
     },
     async addComment() {
       const comment = {
-        user: this.$root.user.id,
+        // user: this.$root.user.id,
+        user: localStorage.getItem("id"),
         comment: this.comment
       };
 

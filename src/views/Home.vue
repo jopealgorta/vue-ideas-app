@@ -31,7 +31,10 @@ export default {
       this.text = err.response.data.message;
     }
     try {
-      const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      // const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      const response = await axios(
+        `api/users/${localStorage.getItem("id")}/liked`
+      );
       this.likedIdeas = response.data.data.likedIdeas;
     } catch (err) {
       this.snackbar = true;

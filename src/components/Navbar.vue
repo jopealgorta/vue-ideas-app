@@ -101,8 +101,10 @@ export default {
     ]
   }),
   created() {
-    this.username = this.$root.user.name;
-    this.userPhoto = this.$root.user.photo;
+    // this.username = this.$root.user.name;
+    this.username = localStorage.getItem("username");
+    // this.userPhoto = this.$root.user.photo;
+    this.userPhoto = localStorage.getItem("photo");
   },
   methods: {
     toggleNav() {

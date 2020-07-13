@@ -137,13 +137,17 @@ export default {
           .post("api/users/signup", user)
           .then(response => {
             if (response.data.status == "success") {
-              localStorage.setItem("jwt", response.data.data.token);
               this.$router.push("/");
-              this.$root.user.name = response.data.data.user.name;
-              this.$root.user.email = response.data.data.user.email;
-              this.$root.user.photo = response.data.data.user.photo;
-              this.$root.user.id = response.data.data.user.id;
-              this.$root.user.chats = response.data.data.user.chats;
+              localStorage.setItem("username", response.data.data.user.name);
+              localStorage.setItem("email", response.data.data.user.email);
+              localStorage.setItem("photo", response.data.data.user.photo);
+              localStorage.setItem("id", response.data.data.user.id);
+              localStorage.setItem("chats", response.data.data.user.chats);
+              // this.$root.user.name = response.data.data.user.name;
+              // this.$root.user.email = response.data.data.user.email;
+              // this.$root.user.photo = response.data.data.user.photo;
+              // this.$root.user.id = response.data.data.user.id;
+              // this.$root.user.chats = response.data.data.user.chats;
             }
           })
           .catch(err => {

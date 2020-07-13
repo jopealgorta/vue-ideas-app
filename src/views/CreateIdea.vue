@@ -74,7 +74,8 @@ export default {
           title: this.title,
           summary: this.summary,
           description: this.description,
-          user: this.$root.user.id,
+          // user: this.$root.user.id,
+          user: localStorage.getItem("id"),
           category: this.category
         };
         const response = await axios.post("api/ideas", idea);

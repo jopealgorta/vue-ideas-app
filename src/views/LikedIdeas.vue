@@ -26,7 +26,8 @@ export default {
   async created() {
     try {
       const response = await axios(
-        `api/users/${this.$root.user.id}/liked?popu=1`
+        // `api/users/${this.$root.user.id}/liked?popu=1`
+        `api/users/${localStorage.getItem("id")}/liked?popu=1`
       );
       this.ideas = response.data.data.likedIdeas;
     } catch (err) {
@@ -34,7 +35,10 @@ export default {
       this.text = err.response.data.message;
     }
     try {
-      const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      // const response = await axios(`api/users/${this.$root.user.id}/liked`);
+      const response = await axios(
+        `api/users/${localStorage.getItem("id")}/liked`
+      );
       this.likedIdeas = response.data.data.likedIdeas;
     } catch (err) {
       this.snackbar = true;
