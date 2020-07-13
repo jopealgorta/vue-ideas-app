@@ -47,10 +47,11 @@
 </style>
 <script>
 export default {
-  data() {
+  data: () => {
     return {};
   },
   props: ["messages"],
+
   computed: {
     username() {
       // return this.$root.user.name;

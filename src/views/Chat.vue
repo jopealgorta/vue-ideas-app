@@ -46,7 +46,7 @@ export default {
     messages: [],
     socket: io(),
     prevRoute: null,
-    chatCont: document.querySelector(".chat-container")
+    chatCont: null
   }),
   methods: {
     joinServer() {
@@ -72,7 +72,7 @@ export default {
     },
     sendMessage() {
       this.socket.emit("chatMessage", this.message);
-      this.chatCont.scrollTop = this.chatCont.scrollHeight;
+      this.chatCont.scrollTop = this.chatCont.scrollHeight + 70;
       this.clearMessage();
     },
     clearMessage() {
@@ -83,8 +83,8 @@ export default {
     }
   },
   async mounted() {
-    this.idea = // await axios(`api/ideas/${this.$root.idea}`)
-    (
+    this.chatCont = this.$el.querySelector(".chat-container");
+    this.idea = ( // await axios(`api/ideas/${this.$root.idea}`)
       await axios(`api/ideas/${localStorage.getItem("idea")}`)
     ).data.data.idea.title;
     await axios.patch(

@@ -12,14 +12,7 @@
         <v-row>
           <v-form class="data-form" v-model="valid">
             <v-col cols="12">
-              <v-text-field
-                v-model="name"
-                filled
-                :counter="10"
-                :rules="nameRules"
-                label="Name"
-                required
-              ></v-text-field>
+              <v-text-field v-model="name" filled :rules="nameRules" label="Name" required></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field v-model="email" filled :rules="emailRules" label="E-mail" required></v-text-field>
@@ -126,13 +119,10 @@ export default {
     confirmPassword: "",
     userPhoto: "",
     photo: "",
-    nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
-    ],
+    nameRules: [v => !!v || "Nombre es requerido."],
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      v => !!v || "E-mail es requerido",
+      v => /.+@.+\..+/.test(v) || "E-mail debe ser valido"
     ],
     passwordRules: [
       v => !!v || "Contraseña es requerida",
@@ -174,8 +164,9 @@ export default {
           // this.$root.user.email = this.email;
           localStorage.setItem("email", this.email);
           // this.$root.user.photo = res.data.data.photo;
-          localStorage.setItem("photo", res.data.data.photo);
-          this.userPhoto = res.data.data.photo;
+          console.log(res);
+          localStorage.setItem("photo", res.data.data.user.photo);
+          this.userPhoto = res.data.data.user.photo;
         }
       } catch (err) {
         this.loading = false;

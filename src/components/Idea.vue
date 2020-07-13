@@ -106,7 +106,7 @@ export default {
       } else if (category == "Programacion") {
         return "mdi-script-text-outline";
       } else {
-        return "mdi-view-dashboard-variant-outline";
+        return "mdi-view-dashboard";
       }
     },
     async putLike(id) {
